@@ -15,7 +15,7 @@ let currentLevel = 0;
 let displayLevel = 'LEVEL:<span id="display-number">0</span>';
 let count;
 
-alert("hello");
+
 
 //MAIN FUNCTIONS---------------------------------------------------------------------
 
@@ -140,6 +140,17 @@ async function coloredBtnsAnimation(count) {
     await timer(1000);
   }
 }
+
+toggleSwitch.addEventListener('click', function() {
+  if(toggleSwitch.checked) {
+    strict = true;
+    displayText.innerHTML = 'STRICT MODE';
+  } else {
+    strict = true;
+    displayText.innerHTML = 'NORMAL MODE';
+  }
+  
+});
 
 //CALLED FUNCTIONS-------------------------------------------------------------
 
