@@ -145,9 +145,23 @@ toggleSwitch.addEventListener('click', function() {
   if(toggleSwitch.checked) {
     strict = true;
     displayText.innerHTML = 'STRICT MODE';
+    setTimeout(function() {
+      if (currentLevel === 0) {
+        displayText.innerHTML = "PRESS START TO BEGIN";
+      } else {
+        setDefaultDisplayText();
+      }
+    }, 1000);
   } else {
     strict = true;
     displayText.innerHTML = 'NORMAL MODE';
+    setTimeout(function() {
+      if (currentLevel === 0) {
+        displayText.innerHTML = "PRESS START TO BEGIN";
+      } else {
+        setDefaultDisplayText();
+      }
+    }, 1000);
   }
   
 });
