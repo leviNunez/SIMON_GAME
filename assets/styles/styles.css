@@ -1,0 +1,426 @@
+/* *,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+} */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    position: relative;
+    background-image: url(../images/wood-wallpaper.jpg);
+    background-size: cover;
+    background-color: rgb(122, 122, 122);
+    height: 100vh;
+}
+
+.btn-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-top: .5rem;
+}
+
+.main-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70rem;
+    height: 70rem;
+}
+
+.metal-board {
+    background-image: url(../images/brushed-metal-img.jpg);
+    position: relative;
+    background-size: cover;
+    border: .1rem solid #666666;
+    box-shadow: 0 50px 100px rgba(0, 0 , 0,.9);
+    border-radius: 10%;
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+
+    animation: moveFromTopToBottom 1.5s ease-out;
+}
+
+@keyframes moveFromTopToBottom {
+    0% {
+        visibility: hidden;
+        transform: translateY(-50rem);
+    }
+
+    80% {
+        transform: translateY(10rem);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+.simon-text-container {
+    display: inline-block;
+    text-align: left;
+    font-size: 1.5rem;
+    position: absolute;
+    top: .5rem;
+    left: 5rem;
+}
+
+.simon-text {
+    font-family: 'Yesteryear', cursive;
+    font-size: 3rem;
+    text-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.8);
+    transform: translateY(-1px);
+}
+
+.display-container {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 2rem;
+    position: absolute;
+    top: 2rem;
+    left: 24rem;
+}
+
+.display-box {
+    background-color:#000000;
+    filter: contrast(150%);
+    display: inline-block;
+    width: 22rem;
+    height: 3rem;
+    border: .5rem solid #3d3d3d;
+}
+
+#display-text {
+    color: #0ecdf3;
+    display: inline-block;
+    margin: .5rem auto .5rem auto;
+    filter: brightness(200%);
+    font-family: 'Goldman', sans-serif;
+    font-size: 1.5rem;
+    text-shadow: 0 20px 13px #0ecdf3;
+    visibility: hidden;
+}
+
+#display-number {
+    margin-left: 2rem;
+}
+
+.display-animation-fade-in {
+    animation: fadeIn 1s;
+}
+
+.display-animation-fade-out {
+    animation: fadeOut 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+    }
+
+    20% {
+        opacity: 20%;
+    }
+
+    40% {
+        opacity: 50%;
+    }
+
+    60% {
+        opacity: 75%;
+    }
+    80% {
+        opacity: 80%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 100%;
+    }
+
+    80% {
+        opacity: 80%;
+    }
+
+    60% {
+        opacity: 60%;
+    }
+
+    40% {
+        opacity: 40%;
+    }
+    20% {
+        opacity: 20%;
+    }
+
+    0% {
+        opacity: 0%;
+    }
+}
+
+.toggle-switch-container {
+    display: inline-block;
+    position: absolute;
+    top: 3rem;
+    right: 5rem;
+}
+
+.switch-mode {
+    position: relative;
+    display: inline-block;
+    width: 7rem;
+    height: 3.4rem;
+}
+.switch-mode input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    background-image: url(../images/metal-wallpaper.jpg);
+    background-size: cover;
+    position: absolute;
+    border: .1rem solid #6e6e6e;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider::before {
+    background-image: url(../images/metallic-button.jpg);
+    background-size: cover;
+    filter: brightness(150%);
+    border: .1rem solid rgb(78, 77, 77);
+    position:absolute;
+    content: "";
+    height: 2.6rem;
+    width: 2.6rem;
+    top: .1rem;
+    left: .4rem;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(32px);
+    -ms-transform: translateX(32px);
+    transform: translateX(32px)
+}
+
+/* Rouded sliders */
+.slider.round {
+    border-radius: 3rem;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.strict-mode-text {
+    display: block;
+}
+
+.colored-btn-container {
+    background-image: url(../images/brushed-metal-img.jpg);
+    background-size: cover;
+    border-radius: 100%;
+    border: .1rem solid #6e6e6e;
+    display: inline-block;
+    padding: 1rem;
+    position: absolute;
+    top: 12rem;
+    left: 13rem;
+}
+
+.colored-btn {
+    width: 20rem;
+    height: 20rem;
+    display: inline-block;
+    cursor: pointer;
+    margin: 1rem .3rem .3rem .3rem;
+    transform: translateY(-3px);
+    border: .1rem solid #0000009a;
+    box-shadow: 0 5px 10px rgba(0, 0 , 0,.9);
+}
+
+#green {
+    background-image: url(../images/metallic-grey.jpg);
+    background-size: cover;
+    background-color: rgb(0, 255, 0);
+    border-radius: 100% 0 0 0;
+}
+
+#red {
+    background-image: url(../images/metallic-grey.jpg);
+    background-size: cover;
+    background-color: red;
+    border-radius: 0 100% 0 0;
+}
+
+#yellow {
+    background-image: url(../images/metallic-grey.jpg);
+    background-size: cover;
+    background-color: yellow;
+    border-radius: 0 0 0 100%;
+}
+
+#blue {
+    background-image: url(../images/metallic-grey.jpg);
+    background-size: cover;
+    background-color: blue;
+    border-radius: 0 0 100% 0;
+}
+
+.colored-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.colored-btn-off {
+    background-blend-mode: multiply;
+}
+
+.colored-btn-on {
+    filter: brightness(125%);
+    background-blend-mode: luminosity;
+}
+
+.power-btn-container {
+    display: inline-block;
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 32rem;
+}
+
+#power-btn {
+    background-image: url(../images/brushed-metal-img.jpg);
+    background-size: cover;
+    border: .1rem solid #6e6e6e;
+    border-radius: 100%;
+    display:block;
+    width: 6rem;
+    height: 4rem;
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0 , 0,.9);
+}
+
+#power-btn:active {
+    transform: translateY(0);
+    border: .1rem solid #353535;
+    box-shadow: none;
+
+}
+
+.start-btn-container {
+    display: inline-block;
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 6rem;
+    right: 16rem;
+}
+
+#start-btn {
+    background-image: url(../images/metal-wallpaper.jpg);
+    background-size: cover;
+    border: .1rem solid #4e4e4e;
+    border-radius: 80%;
+    display:block;
+    width: 4.5rem;
+    height: 4.5rem;
+    cursor: pointer;
+}
+
+#start-btn:active {
+    transform: translateY(2px);
+    border: .1rem solid #0e0e0e;
+}
+
+#led-light {
+    width: .2rem;
+    height: .2rem;
+    border: .1rem solid #6e6e6e;
+    border-radius: 100%;
+    display: inline-block;
+    padding: 2rem;
+    position: absolute;
+    left: 18rem;
+    bottom: 9.5rem;
+   
+}
+
+.led-light-off {
+    background-image: url(../images/led-circle-off.png);
+    background-size: cover;
+    border: .3rem solid #6e6e6e;
+}
+
+.led-light-red {
+    background-image: url(../images/led-circle-red.png);
+    background-size: cover;
+    box-shadow: 0 10px 20px rgba(255, 1, 1, 0.9);
+}
+
+.led-light-green {
+    background-image: url(../images/led-circle-green.png);
+    background-size: cover;
+    box-shadow: 0 10px 20px rgba(102, 255, 1, 0.9);
+}
+
+.led-light-yellow {
+    background-image: url(../images/led-circle-yellow.png);
+    background-size: cover;
+    box-shadow: 0 10px 20px rgba(255, 230, 1, 0.9);
+}
+
+.speaker-img {
+    background-image: url(../images/metallic-black.jpg);
+    background-size: auto;
+    filter: brightness(150%);
+    border-radius: 100%;
+    height: 8rem;
+    width: 8rem;
+    border: .3rem solid #6e6e6e;
+    position: absolute;
+    bottom: 5rem;
+    left: 5rem;
+}
+
+@media (max-width: 740px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 640px) {
+    html {
+        font-size: 45%;
+    }
+}
+
+@media (max-width: 540px) {
+    html {
+        font-size: 42%;
+    }
+}
+

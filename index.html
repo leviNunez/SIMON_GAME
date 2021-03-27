@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Goldman&family=Yesteryear&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+
+    <script src="assets/scripts/app.js" defer></script>
+
+    <title>Levi's Simon Game</title>
+  </head>
+
+  <body>
+    <div class="main-container">
+
+      <div class="metal-board">
+
+        <div class="simon-text-container">
+          <h3 class="simon-text">Simon</h3>
+        </div>
+
+        <div class="display-container">
+          <div class="display-box">
+            <h3 id="display-text">
+              LEVEL:<span id="display-number">0</span>
+            </h3>
+          </div>
+        </div>
+
+        <div class="toggle-switch-container">
+          <label class="switch-mode">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <h3 class="btn-text">normal/strict</h3>
+        </div>
+
+        <div class="colored-btn-container">
+          <div id="green" class="colored-btn colored-btn-off"></div>
+          <div id="red" class="colored-btn colored-btn-off"></div>
+          <br />
+          <div id="yellow" class="colored-btn colored-btn-off"></div>
+          <div id="blue" class="colored-btn colored-btn-off"></div>
+        </div>
+
+        <div class="power-btn-container">
+          <div id="power-btn"></div>
+          <h3 class="btn-text">Power On/Off</h3>
+        </div>
+
+        <div class="start-btn-container">
+          <div id="start-btn"></div>
+          <h3 class="btn-text">Start</h3>
+        </div>
+
+        <div id="led-light" class="led-light-off"></div>
+        <div class="speaker-img"></div>
+
+      </div>
+      
+    </div>
+  </body>
+</html>
