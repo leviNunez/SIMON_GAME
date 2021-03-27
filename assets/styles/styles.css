@@ -436,7 +436,7 @@ input:checked + .slider:before {
 
 @media (max-width: 390px) {
     html {
-        font-size: 35%;
+        font-size: 25%;
     }
     input:checked + .slider:before {
         -webkit-transform: translateX(3rem);
