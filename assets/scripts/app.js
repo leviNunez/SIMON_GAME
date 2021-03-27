@@ -141,6 +141,8 @@ async function coloredBtnsAnimation(count) {
   }
 }
 
+//NORMAL/STRICT TOGGLE
+
 toggleSwitch.addEventListener('click', function() {
   if(toggleSwitch.checked) {
     strict = true;
@@ -163,7 +165,6 @@ toggleSwitch.addEventListener('click', function() {
       }
     }, 1000);
   }
-  
 });
 
 //CALLED FUNCTIONS-------------------------------------------------------------
