@@ -15,6 +15,8 @@ let currentLevel = 0;
 let displayLevel = 'LEVEL:<span id="display-number">0</span>';
 let count;
 
+alert("hello");
+
 //MAIN FUNCTIONS---------------------------------------------------------------------
 
 //POWER ON/OFF
