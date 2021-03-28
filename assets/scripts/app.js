@@ -48,6 +48,7 @@ startBtn.addEventListener("click", function () {
 //HANDLES COMPUTER'S SEQUENCE
 
 function gameSequence() {
+  playersTurn = false;
   displayText.innerHTML = "WATCH!";
   currentLevel++;
   playerPattern = [];
@@ -56,11 +57,12 @@ function gameSequence() {
   gamePattern.push(randomChosenColor);
   count = gamePattern.length;
   coloredBtnsAnimation(count);
-  playersTurn = true;
   makeLedLightFlash("yellow", 1000 * count);
   setTimeout(function () {
     setDefaultDisplayText();
+    playersTurn = true;
   }, 1000 * count);
+  
 }
 
 //HANDLES PLAYER'S SEQUENCE
@@ -87,14 +89,14 @@ for (let i = 0; i <= 3; i++) {
 function normalCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash("green", 200);
+      makeLedLightFlash("green", 500);
       displayText.innerHTML = "CORRECT!";
       setTimeout(function () {
-        playersTurn = false;
         gameSequence();
       }, 1000);
     }
   } else {
+    playersTurn = false;
     playerPattern = [];
     playASound("wrong");
     makeLedLightFlash("red", 1000);
@@ -108,6 +110,7 @@ function normalCheck(index) {
     }, 1000);
     setTimeout(function () {
       setDefaultDisplayText();
+      playersTurn = true;
     }, 1000 * count);
   }
 }
@@ -115,7 +118,7 @@ function normalCheck(index) {
 function strictCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash("green", 100);
+      makeLedLightFlash("green", 500);
       displayText.innerHTML = "CORRECT!";
       setTimeout(function () {
         gameSequence();
