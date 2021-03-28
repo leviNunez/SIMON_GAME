@@ -1,9 +1,9 @@
-const powerBtn = document.getElementById("power-btn");
-const startBtn = document.getElementById("start-btn");
-const displayText = document.getElementById("display-text");
-const toggleSwitch = document.querySelector("input");
-const ledLight = document.getElementById("led-light");
-const coloredBtnsArr = ["green", "red", "yellow", "blue"];
+const powerBtn = document.getElementById('power-btn');
+const startBtn = document.getElementById('start-btn');
+const displayText = document.getElementById('display-text');
+const toggleSwitch = document.querySelector('input');
+const ledLight = document.getElementById('led-light');
+const coloredBtnsArr = ['green', 'red', 'yellow', 'blue'];
 
 let isPowerOn = false;
 let isGameStarted = false;
@@ -20,7 +20,7 @@ let count;
 //MAIN FUNCTIONS---------------------------------------------------------------------
 
 //POWER ON/OFF
-powerBtn.addEventListener("click", function () {
+powerBtn.addEventListener('click', function () {
   if (isPowerOn === false) {
     powerOnAnimation(1500);
     setTimeout(function () {
@@ -37,8 +37,8 @@ powerBtn.addEventListener("click", function () {
 
 //STARTS THE SEQUENCE
 
-startBtn.addEventListener("click", function () {
-  if (displayText.innerHTML === "PRESS START TO BEGIN") {
+startBtn.addEventListener('click', function () {
+  if (displayText.innerHTML === 'PRESS START TO BEGIN') {
     isGameStarted = true;
     setDefaultDisplayText();
     gameSequence();
@@ -49,7 +49,7 @@ startBtn.addEventListener("click", function () {
 
 function gameSequence() {
   playersTurn = false;
-  displayText.innerHTML = "WATCH!";
+  displayText.innerHTML = 'WATCH!';
   currentLevel++;
   playerPattern = [];
   const randomNumber = Math.floor(Math.random() * 4);
@@ -57,7 +57,7 @@ function gameSequence() {
   gamePattern.push(randomChosenColor);
   count = gamePattern.length;
   coloredBtnsAnimation(count);
-  makeLedLightFlash("yellow", 1000 * count);
+  makeLedLightFlash('yellow', 1000 * count);
   setTimeout(function () {
     setDefaultDisplayText();
     playersTurn = true;
@@ -68,10 +68,10 @@ function gameSequence() {
 //HANDLES PLAYER'S SEQUENCE
 
 for (let i = 0; i <= 3; i++) {
-  document.querySelectorAll(".colored-btn")[i].addEventListener("click", function () {
+  document.querySelectorAll('.colored-btn')[i].addEventListener('click', function () {
       if (playersTurn === true) {
         const clickedBtn = this.id;
-        makeButtonFlash(clickedBtn, 200);
+        makeAButtonFlash(clickedBtn, 200);
         playASound(clickedBtn);
         playerPattern.push(this.id);
         let index = playerPattern.length - 1;
@@ -89,8 +89,8 @@ for (let i = 0; i <= 3; i++) {
 function normalCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash("green", 500);
-      displayText.innerHTML = "CORRECT!";
+      makeLedLightFlash('green', 500);
+      displayText.innerHTML = 'CORRECT!';
       setTimeout(function () {
         gameSequence();
       }, 1000);
@@ -98,12 +98,12 @@ function normalCheck(index) {
   } else {
     playersTurn = false;
     playerPattern = [];
-    playASound("wrong");
-    makeLedLightFlash("red", 1000);
-    displayText.innerHTML = "WRONG!";
+    playASound('wrong');
+    makeLedLightFlash('red', 1000);
+    displayText.innerHTML = 'WRONG!';
     setTimeout(function () {
-      displayText.innerHTML = "WATCH!";
-      makeLedLightFlash("yellow", 1000 * count);
+      displayText.innerHTML = 'WATCH!';
+      makeLedLightFlash('yellow', 1000 * count);
     }, 1000);
     setTimeout(function () {
       coloredBtnsAnimation(count);
@@ -118,14 +118,14 @@ function normalCheck(index) {
 function strictCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash("green", 500);
-      displayText.innerHTML = "CORRECT!";
+      makeLedLightFlash('green', 500);
+      displayText.innerHTML = 'CORRECT!';
       setTimeout(function () {
         gameSequence();
       }, 1000);
     }
   } else {
-    playASound("wrong");
+    playASound('wrong');
     gameOver();
     resetGame();
   }
@@ -135,9 +135,10 @@ function strictCheck(index) {
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 async function coloredBtnsAnimation(count) {
   let i = 0;
-  while (i <= count) {
-    const color = gamePattern[i];
-    makeButtonFlash(color, 600);
+  let color;
+  while (i < count) {
+    color = gamePattern[i];
+    makeAButtonFlash(color, 600);
     playASound(color);
     i++;
     await timer(1000);
@@ -152,7 +153,7 @@ toggleSwitch.addEventListener('click', function() {
     displayText.innerHTML = 'STRICT MODE';
     setTimeout(function() {
       if (currentLevel === 0) {
-        displayText.innerHTML = "PRESS START TO BEGIN";
+        displayText.innerHTML = 'PRESS START TO BEGIN';
       } else {
         setDefaultDisplayText();
       }
@@ -162,7 +163,7 @@ toggleSwitch.addEventListener('click', function() {
     displayText.innerHTML = 'NORMAL MODE';
     setTimeout(function() {
       if (currentLevel === 0) {
-        displayText.innerHTML = "PRESS START TO BEGIN";
+        displayText.innerHTML = 'PRESS START TO BEGIN';
       } else {
         setDefaultDisplayText();
       }
@@ -170,34 +171,34 @@ toggleSwitch.addEventListener('click', function() {
   }
 });
 
-//CALLED FUNCTIONS-------------------------------------------------------------
+//CALLED BACK FUNCTIONS-------------------------------------------------------------
 
 function powerOnAnimation(time) {
-  displayAnimation("fade-in", time);
+  displayAnimation('fade-in', time);
   makeAllBtnsFlash(1500);
-  makeLedLightFlash("green", time);
+  makeLedLightFlash('green', time);
 }
 
 function powerOffAnimation(time) {
-  displayAnimation("fade-out", time);
+  displayAnimation('fade-out', time);
 }
 
 function displayAnimation(animation, time) {
-  if (animation === "fade-in") {
-    displayText.innerHTML = "HELLO!";
-    displayText.classList.toggle("display-animation-fade-in");
-    displayText.style.visibility = "visible";
+  if (animation === 'fade-in') {
+    displayText.innerHTML = 'HELLO!';
+    displayText.classList.toggle('display-animation-fade-in');
+    displayText.style.visibility = 'visible';
     setTimeout(function () {
-      displayText.innerHTML = "PRESS START TO BEGIN";
+      displayText.innerHTML = 'PRESS START TO BEGIN';
     }, time);
     setTimeout(function () {
-      displayText.classList.toggle("display-animation-fade-in");
+      displayText.classList.toggle('display-animation-fade-in');
     }, time);
   } else {
-    displayText.innerHTML = "SHUTTING DOWN :(";
-    displayText.classList.toggle("display-animation-fade-out");
+    displayText.innerHTML = 'SHUTTING DOWN :(';
+    displayText.classList.toggle('display-animation-fade-out');
     setTimeout(function () {
-      displayText.style.visibility = "hidden";
+      displayText.style.visibility = 'hidden';
     }, time);
   }
 }
@@ -206,44 +207,44 @@ function makeAllBtnsFlash(time) {
   for (let i = 0; i <= 3; i++) {
     document
       .getElementById(coloredBtnsArr[i])
-      .classList.toggle("colored-btn-on");
+      .classList.toggle('colored-btn-on');
     setTimeout(function () {
       document
         .getElementById(coloredBtnsArr[i])
-        .classList.toggle("colored-btn-on");
+        .classList.toggle('colored-btn-on');
     }, time);
   }
 }
 
-function makeButtonFlash(coloredBtn, time) {
-  document.getElementById(coloredBtn).classList.toggle("colored-btn-on");
+function makeAButtonFlash(coloredBtn, time) {
+  document.getElementById(coloredBtn).classList.toggle('colored-btn-on');
   setTimeout(function () {
-    document.getElementById(coloredBtn).classList.toggle("colored-btn-on");
+    document.getElementById(coloredBtn).classList.toggle('colored-btn-on');
   }, time);
 }
 
 function playASound(color) {
-  const colorAudio = new Audio("assets/sounds/" + color + ".mp3");
+  const colorAudio = new Audio('assets/sounds/' + color + '.mp3');
   colorAudio.play();
 }
 
 function makeLedLightFlash(color, time) {
-  ledLight.classList.toggle("led-light-" + color);
+  ledLight.classList.toggle('led-light-' + color);
   setTimeout(function () {
-    ledLight.classList.toggle("led-light-" + color);
+    ledLight.classList.toggle('led-light-' + color);
   }, time);
 }
 
 function setDefaultDisplayText() {
   displayText.innerHTML = displayText.innerHTML = displayLevel;
-  document.getElementById("display-number").innerHTML = currentLevel;
+  document.getElementById('display-number').innerHTML = currentLevel;
 }
 
 function gameOver() {
-  makeLedLightFlash("red", 1000);
-  displayText.innerHTML = "GAME OVER";
+  makeLedLightFlash('red', 1000);
+  displayText.innerHTML = 'GAME OVER';
   setTimeout(function () {
-    displayText.innerHTML = "PRESS START TO BEGIN";
+    displayText.innerHTML = 'PRESS START TO BEGIN';
   }, 1000);
 }
 
