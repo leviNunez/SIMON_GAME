@@ -1,5 +1,6 @@
 const powerBtn = document.getElementById('power-btn');
 const startBtn = document.getElementById('start-btn');
+const resetBtn = document.getElementById('reset-btn');
 const displayText = document.getElementById('display-text');
 const toggleSwitch = document.querySelector('input');
 const ledLight = document.getElementById('led-light');
@@ -9,6 +10,7 @@ let isPowerOn = false;
 let isGameStarted = false;
 let strict = false;
 let playersTurn = false;
+let functionStopper = false;
 let gamePattern = [];
 let playerPattern = [];
 let currentLevel = 0;
@@ -35,20 +37,36 @@ powerBtn.addEventListener('click', function () {
   }
 });
 
-//STARTS THE SEQUENCE
+//STARTS THE GAME
 
 startBtn.addEventListener('click', function () {
   if (displayText.innerHTML === 'PRESS START TO BEGIN') {
     isGameStarted = true;
+    functionStopper = false;
     setDefaultDisplayText();
     gameSequence();
   }
 });
 
+//RESETS THE GAME
+
+resetBtn.addEventListener('click', function () {
+  if (isGameStarted) {
+    functionStopper = true;
+    displayText.innerHTML = 'RESETTING...';
+    setTimeout(function() {
+      resetGame();
+      displayText.innerHTML = 'PRESS START TO BEGIN';
+    }, 500); 
+  }
+});
+
+
 //HANDLES COMPUTER'S SEQUENCE
 
 function gameSequence() {
   playersTurn = false;
+  turnLedLightOn('yellow');
   displayText.innerHTML = 'WATCH!';
   currentLevel++;
   playerPattern = [];
@@ -57,12 +75,14 @@ function gameSequence() {
   gamePattern.push(randomChosenColor);
   count = gamePattern.length;
   coloredBtnsAnimation(count);
-  makeLedLightFlash('yellow', 1000 * count);
   setTimeout(function () {
+    if (functionStopper === true) {
+      return;
+    }
     setDefaultDisplayText();
     playersTurn = true;
+    turnLedLightOn('green');
   }, 1000 * count);
-  
 }
 
 //HANDLES PLAYER'S SEQUENCE
@@ -71,7 +91,7 @@ for (let i = 0; i <= 3; i++) {
   document.querySelectorAll('.colored-btn')[i].addEventListener('click', function () {
       if (playersTurn === true) {
         const clickedBtn = this.id;
-        makeAButtonFlash(clickedBtn, 200);
+        makeAButtonFlash(clickedBtn, 600);
         playASound(clickedBtn);
         playerPattern.push(this.id);
         let index = playerPattern.length - 1;
@@ -89,8 +109,8 @@ for (let i = 0; i <= 3; i++) {
 function normalCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash('green', 500);
       displayText.innerHTML = 'CORRECT!';
+      turnLedLightOff();
       setTimeout(function () {
         gameSequence();
       }, 1000);
@@ -103,14 +123,18 @@ function normalCheck(index) {
     displayText.innerHTML = 'WRONG!';
     setTimeout(function () {
       displayText.innerHTML = 'WATCH!';
-      makeLedLightFlash('yellow', 1000 * count);
+      turnLedLightOn('yellow');
     }, 1000);
     setTimeout(function () {
       coloredBtnsAnimation(count);
     }, 1000);
     setTimeout(function () {
+      if (functionStopper === true) {
+        return;
+      }
       setDefaultDisplayText();
       playersTurn = true;
+      turnLedLightOn('green');
     }, 1000 * count);
   }
 }
@@ -118,25 +142,33 @@ function normalCheck(index) {
 function strictCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      makeLedLightFlash('green', 500);
       displayText.innerHTML = 'CORRECT!';
+      turnLedLightOff();
       setTimeout(function () {
         gameSequence();
       }, 1000);
     }
   } else {
+    playersTurn= false;
     playASound('wrong');
     gameOver();
-    resetGame();
-  }
+    setTimeout(function() {
+      resetGame();
+    }, 1000);
+
+  }  
+    
 }
 
-//COLORED BUTTONS ANIMATION
+//COLORED BUTTON SEQUENCE
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 async function coloredBtnsAnimation(count) {
   let i = 0;
   let color;
   while (i < count) {
+    if (functionStopper === true) {
+      return;
+    }
     color = gamePattern[i];
     makeAButtonFlash(color, 600);
     playASound(color);
@@ -176,7 +208,6 @@ toggleSwitch.addEventListener('click', function() {
 function powerOnAnimation(time) {
   displayAnimation('fade-in', time);
   makeAllBtnsFlash(1500);
-  makeLedLightFlash('green', time);
 }
 
 function powerOffAnimation(time) {
@@ -228,11 +259,26 @@ function playASound(color) {
   colorAudio.play();
 }
 
+function turnLedLightOn(color) {
+  if (typeof(ledLight.classList[1]) === 'undefinded') {
+    ledLight.classList.add('led-light-' + color);
+  } else {
+    turnLedLightOff();
+    ledLight.classList.add('led-light-' + color);
+  }
+}
+
+function turnLedLightOff() {
+  ledColorToBeRemove = ledLight.classList[1]; 
+  ledLight.classList.remove(ledColorToBeRemove);
+}
+
 function makeLedLightFlash(color, time) {
+  turnLedLightOff();
   ledLight.classList.toggle('led-light-' + color);
-  setTimeout(function () {
+  setTimeout(function() {
     ledLight.classList.toggle('led-light-' + color);
-  }, time);
+  }, time)
 }
 
 function setDefaultDisplayText() {
@@ -241,8 +287,8 @@ function setDefaultDisplayText() {
 }
 
 function gameOver() {
-  makeLedLightFlash('red', 1000);
   displayText.innerHTML = 'GAME OVER';
+  turnLedLightOn('red');
   setTimeout(function () {
     displayText.innerHTML = 'PRESS START TO BEGIN';
   }, 1000);
@@ -250,8 +296,9 @@ function gameOver() {
 
 function resetGame() {
   currentLevel = 0;
+  count = 0;
   gamePattern = [];
   playerPattern = [];
   isGameStarted = false;
-  count = 0;
+  turnLedLightOff();
 }
