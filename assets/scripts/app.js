@@ -159,7 +159,7 @@ toggleSwitch.addEventListener('click', function() {
       }
     }, 1000);
   } else {
-    strict = true;
+    strict = false;
     displayText.innerHTML = 'NORMAL MODE';
     setTimeout(function() {
       if (currentLevel === 0) {
