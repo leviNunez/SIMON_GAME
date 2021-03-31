@@ -402,19 +402,19 @@ input:checked + .slider:before {
 .led-light-red {
     background-image: url(../images/led-circle-red.png);
     background-size: cover;
-    box-shadow: 0 10px 20px rgba(255, 1, 1, 0.9);
+    box-shadow: 0 1rem 2rem rgba(255, 1, 1, 0.9);
 }
 
 .led-light-green {
     background-image: url(../images/led-circle-green.png);
     background-size: cover;
-    box-shadow: 0 10px 20px rgba(102, 255, 1, 0.9);
+    box-shadow: 0 1rem 2rem rgba(81, 255, 1, 0.9);
 }
 
 .led-light-yellow {
     background-image: url(../images/led-circle-yellow.png);
     background-size: cover;
-    box-shadow: 0 10px 20px rgba(255, 230, 1, 0.9);
+    box-shadow: 0 1rem 2rem rgba(255, 230, 1, 0.9);
 }
 
 .speaker-img {

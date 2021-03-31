@@ -1,14 +1,14 @@
-const powerBtn = document.getElementById("power-btn");
-const startBtn = document.getElementById("start-btn");
-const resetBtn = document.getElementById("reset-btn");
-const displayText = document.getElementById("display-text");
-const toggleSwitch = document.querySelector("input");
-const ledLight = document.getElementById("led-light");
+const powerBtn = document.getElementById('power-btn');
+const startBtn = document.getElementById('start-btn');
+const resetBtn = document.getElementById('reset-btn');
+const displayText = document.getElementById('display-text');
+const toggleSwitch = document.querySelector('input');
+const ledLight = document.getElementById('led-light');
 
-const coloredBtnsArr = ["green", "red", "yellow", "blue"];
-const correctAnswer = ["CORRECT!", "EXCELLENT!", "AWESOME!", "PERFECT!"];
-const levelText = "LEVEL: ";
-const pressStart = "PRESS START TO BEGING";
+const coloredBtnsArr = ['green', 'red', 'yellow', 'blue'];
+const correctAnswerArr = ['CORRECT!', 'EXCELLENT!', 'AWESOME!', 'PERFECT!'];
+const levelText = 'LEVEL: ';
+const pressStart = 'PRESS START TO BEGING';
 
 let isPowerOn = false;
 let isGameStarted = false;
@@ -113,7 +113,7 @@ for (let i = 0; i <= 3; i++) {
 function normalCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      displayText.innerHTML = "CORRECT!";
+      displayText.innerHTML = pickRandomText();
       turnLedLightOff();
       setTimeout(function () {
         gameSequence();
@@ -146,7 +146,7 @@ function normalCheck(index) {
 function strictCheck(index) {
   if (playerPattern[index] === gamePattern[index]) {
     if (playerPattern.length === gamePattern.length) {
-      displayText.innerHTML = "CORRECT!";
+      displayText.innerHTML = pickRandomText();
       turnLedLightOff();
       setTimeout(function () {
         gameSequence();
@@ -283,6 +283,11 @@ function makeLedLightFlash(color, time) {
 
 function setDefaultDisplayText() {
   displayText.innerHTML = levelText + currentLevel;
+}
+
+function pickRandomText() {
+  const randomnumber = Math.floor(Math.random() * 3);
+  return correctAnswerArr[randomnumber];
 }
 
 function gameOver() {
